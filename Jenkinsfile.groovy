@@ -1,33 +1,34 @@
 pipeline {
 	agent any
 	stages {
-		stage("安装依赖") {
+		stage("install") {
 			steps {
-				echo "安装依赖"
+				echo "pwd"
+				echo "install"
 				sh "npm install"
 			}
 		}
-		stage("代码扫描") {
+		stage("scan") {
 			steps {
-				echo "代码扫描"
+				echo "scan"
 				sh "npm run lint"
 			}
 		}
-		stage("单元测试") {
+		stage("test") {
 			steps {
-				echo "单元测试"
+				echo "test"
 				sh "npm run test:unit"
 			}
 		}
-		stage("打包构建") {
+		stage("build") {
 			steps {
-				echo "打包构建"
+				echo "build"
 				sh "npm run build"
 			}
 		}
-		stage("部署") {
+		stage("deploy") {
 			steps {
-				echo "部署"
+				echo "deploy"
 			}
 		}
 	}
