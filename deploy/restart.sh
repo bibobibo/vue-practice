@@ -1,2 +1,2 @@
-kill -9 $(lsof -t -i:8080)
-http-server 8080
+kill -9 $(lsof -t -i:8081)
+http-server ../app -p 8081
