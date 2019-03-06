@@ -1,2 +1,2 @@
-kill -9 8080
+kill -9 $(lsof -t -i:8080)
 http-server 8080
