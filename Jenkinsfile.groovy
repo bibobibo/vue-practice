@@ -8,18 +8,18 @@ pipeline {
 				sh "npm install"
 			}
 		}
-		stage("scan") {
-			steps {
-				echo "scan"
-				sh "npm run lint"
-			}
-		}
-		stage("test") {
-			steps {
-				echo "test"
-				sh "npm run test:unit"
-			}
-		}
+		// stage("scan") {
+		// 	steps {
+		// 		echo "scan"
+		// 		sh "npm run lint"
+		// 	}
+		// }
+		// stage("test") {
+		// 	steps {
+		// 		echo "test"
+		// 		sh "npm run test:unit"
+		// 	}
+		// }
 		stage("build") {
 			steps {
 				echo "build"
@@ -28,7 +28,17 @@ pipeline {
 		}
 		stage("deploy") {
 			steps {
-				echo "deploy"
+				script{
+					def remote = [:]
+					remote.name = 'sit'
+					remote.host = '119.27.186.251'
+					remote.user = 'root'
+					remote.password = 'Hml123456'
+					remote.allowAnyHosts = true
+
+					sshPut remote: remote, from: 'dist/', into: 'xwfeng/app', override: true
+					sshPut remote: remote, from: 'deploy/', into: 'xwfeng/', override: true
+				}
 			}
 		}
 	}
