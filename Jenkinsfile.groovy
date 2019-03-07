@@ -1,10 +1,9 @@
 pipeline {
 	agent any
 	stages {
-		stage("install") {
+		stage("安装依赖") {
 			steps {
-				echo "the shell script context is:"
-				sh "pwd"
+				sh "npm install"
 			}
 		}
 
