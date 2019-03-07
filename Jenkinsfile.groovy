@@ -37,8 +37,8 @@ pipeline {
 					remote.allowAnyHosts = true
 
 					sshCommand remote: remote, command: "rm -rf xwfeng/"
-					sshCommand remote: remote, command: "mkdir xwfeng/app"
-					// sshPut remote: remote, from: 'dist/', into: '.', override: true
+					sshCommand remote: remote, command: "mkdir -p xwfeng/app"
+					sshPut remote: remote, from: 'dist/', into: 'xwfeng/app', override: true
 					// sshPut remote: remote, from: 'deploy/', into: '/root/xwfeng/', override: true
 				}
 			}
