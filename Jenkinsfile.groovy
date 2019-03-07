@@ -42,8 +42,7 @@ pipeline {
 					sshCommand remote: remote, command: "mv xwfeng/dist xwfeng/app"
 					sshPut remote: remote, from: 'deploy/deploy.sh', into: 'xwfeng', override: true
 					sshCommand remote: remote, command: "chmod +x xwfeng/deploy.sh"
-					sshCommand remote: remote, command: "cd xwfeng && nohup ./deploy.sh > /dev/null &"
-					// sshScript remote: remote, script: "xwfeng/deploy.sh"
+					sshCommand remote: remote, command: "cd xwfeng && ./deploy.sh"
 				}
 			}
 		}
