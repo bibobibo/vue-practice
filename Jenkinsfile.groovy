@@ -50,7 +50,7 @@ pipeline {
 	}
 	post {
 		always {
-			archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+			// archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
 		}
 	}
 }
