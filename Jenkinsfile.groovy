@@ -7,5 +7,11 @@ pipeline {
 				sh "pwd"
 			}
 		}
+
+		stage("跑单元测试") {
+			steps {
+				sh "npm run test:unit"
+			}
+		}
 	}
 }
