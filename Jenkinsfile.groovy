@@ -1,13 +1,13 @@
 pipeline {
 	agent any
 	stages {
-		stage("install") {
-			steps {
-				echo "pwd"
-				echo "install"
-				sh "npm install"
-			}
-		}
+		// stage("install") {
+		// 	steps {
+		// 		echo "pwd"
+		// 		echo "install"
+		// 		sh "npm install"
+		// 	}
+		// }
 		// stage("scan") {
 		// 	steps {
 		// 		echo "scan"
@@ -20,12 +20,12 @@ pipeline {
 		// 		sh "npm run test:unit"
 		// 	}
 		// }
-		stage("build") {
-			steps {
-				echo "build"
-				sh "npm run build"
-			}
-		}
+		// stage("build") {
+		// 	steps {
+		// 		echo "build"
+		// 		sh "npm run build"
+		// 	}
+		// }
 		stage("deploy") {
 			steps {
 				script{
@@ -36,8 +36,10 @@ pipeline {
 					remote.password = 'Hml123456'
 					remote.allowAnyHosts = true
 
-					sshPut remote: remote, from: 'dist/', into: 'xwfeng/app', override: true
-					sshPut remote: remote, from: 'deploy/', into: 'xwfeng/', override: true
+					sshCommand remote: remote, command: "rm -rf xwfeng/"
+					sshCommand remote: remote, command: "mkdir xwfeng/app"
+					// sshPut remote: remote, from: 'dist/', into: '.', override: true
+					// sshPut remote: remote, from: 'deploy/', into: '/root/xwfeng/', override: true
 				}
 			}
 		}
