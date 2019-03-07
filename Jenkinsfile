@@ -1,11 +1,20 @@
 pipeline {
-	def remote = [:]
-    remote.name = 'test'
-    remote.host = 'test.domain.com'
-    remote.user = 'root'
-    remote.password = 'password'
-    remote.allowAnyHosts = true
-    stage('Remote SSH') {
-      sshGet remote: remote, from: 'abc.sh', into: 'abc_get.sh', override: true
-    }
+	agent any
+
+	stages {
+		stage("") {
+			steps{
+				script{
+					def remote = [:]
+					remote.name = 'sit'
+					remote.host = '119.27.186.251'
+					remote.user = 'root'
+					remote.password = 'Hml123456'
+					remote.allowAnyHosts = true
+
+					sshPut remote: remote, from: 'Jenkinsfile', into: 'brant', override: true
+				}
+			}
+		}
+	}
 }
