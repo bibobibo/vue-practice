@@ -36,10 +36,11 @@ pipeline {
 					remote.password = 'Hml123456'
 					remote.allowAnyHosts = true
 
-					sshCommand remote: remote, command: "rm -rf xwfeng/"
-					sshCommand remote: remote, command: "mkdir -p xwfeng/app"
-					sshPut remote: remote, from: 'dist/', into: 'xwfeng/app', override: true
-					// sshPut remote: remote, from: 'deploy/', into: '/root/xwfeng/', override: true
+					sshCommand remote: remote, command: "rm -rf xwfeng"
+					sshCommand remote: remote, command: "mkdir xwfeng"
+					sshPut remote: remote, from: 'dist/', into: 'xwfeng', override: true
+					sshCommand remote: remote, command: "mv xwfeng/dist xwfeng/app"
+					sshPut remote: remote, from: 'deploy/deploy.sh', into: 'xwfeng', override: true
 				}
 			}
 		}
